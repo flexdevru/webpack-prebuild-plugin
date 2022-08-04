@@ -1,0 +1,30 @@
+{
+  "name": "webpack-prebuild-plugin",
+  "version": "0.0.1",
+  "description": "webpack-prebuild-plugin",
+  "main": "./src/index.js",
+  "scripts": {
+    "start": "webpack serve --mode development --progress",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/flexdevru/webpack-prebuild-plugin.git"
+  },
+  "author": "Sergey Abramov",
+  "license": "MIT",
+  "peerDependencies": {
+    "webpack": ">=4.0.0 <6.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.5",
+    "clean-webpack-plugin": "^4.0.0",
+    "jotform-css.js": "^1.0.1",
+    "ts-loader": "^9.3.1",
+    "tsconfig-paths-webpack-plugin": "^3.5.2",
+    "typescript": "^4.7.4",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.9.3"
+  }
+}
