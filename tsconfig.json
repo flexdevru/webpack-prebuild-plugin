@@ -2,18 +2,19 @@
   "compilerOptions": {
     "noImplicitAny": false,
     "noEmitOnError": true,
-    "removeComments": false,
-    "sourceMap": true,
+    "removeComments": true,
+    "sourceMap": false,
     "target": "es5",
-	  "declaration": false, 
-	  "strict": true,
-    "allowSyntheticDefaultImports": true
+    "declaration": true, 
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "outDir": "./dist"
   },
   "include": [
     "./src"
-  ],
+  ],  
   "exclude": [
     "node_modules",
-    "build"
+    "dist"
   ]
 }
