@@ -5,7 +5,7 @@ import * as cssjs from 'jotform-css.js';
 
 export class WebpackPrebuildPlugin {
   private pluginName: string = 'WebpackPrebuildPlugin'
-  private options: PluginOptions = {compilation_date: true, fonts: true, configs: true, images: true, sounds: true, variables: true};
+  private options: PluginOptions = {compilation_date: true, fonts: true, configs: true, images: true, sounds: true, variables: []};
 
   constructor(options: Object | null) {
     if (options != null) {
@@ -24,7 +24,7 @@ export class WebpackPrebuildPlugin {
     if (this.options.configs == true) this.process_configs();
     if (this.options.images == true) this.process_images();
     if (this.options.sounds == true) this.process_sounds();
-    if (this.options.variables == true) this.process_variables();
+    this.process_variables();
   }
 
   private process_date = () => {
@@ -148,6 +148,16 @@ export class WebpackPrebuildPlugin {
 
   private process_variables = () => {
     let variables: string = 'var showhelp_var = "%task%_showhelp";\nvar completed_var = "%task%_completed";\nvar store_var = "%task%_store";';
+
+    if (this.options.variables != null && this.options.variables.length > 0) {
+      for (let i: number = 0; i < this.options.variables.length; i++) {
+
+        let variable: string = this.options.variables[i];
+        let part: string = variable.split('_')[0];
+        variables = variables + '\nvar ' + variable + ' = "%task%_' + part + '"';
+      }
+    }
+
     let target: string = './src/variables.js';
     let parts: Array<string> = process.cwd().split('\\');
     let task: string = parts[parts.length - 1];
@@ -173,7 +183,7 @@ interface PluginOptions {
   configs: boolean;
   images: boolean;
   sounds: boolean;
-  variables: boolean;
+  variables: Array<string>;
 }
 
 function fileList(dir: string): Array<string> {
